@@ -1,0 +1,23 @@
+
+<h1>Terminal Tasks</h1>
+
+<form action="/add" method="POST">
+  <input type="text" name="task" placeholder="Enter task" required />
+  <button type="submit">Add</button>
+</form>
+
+<ul>
+  <% tasks.forEach(task => { %>
+    <li style="<%= task.completed ? 'text-decoration: line-through; color: gray;' : '' %>">
+      <%= task.name %>
+      <form action="/complete/<%= task.id %>" method="POST" style="display:inline">
+        <button type="submit"><%= task.completed ? 'Undo' : 'Complete' %></button>
+      </form>
+      <form action="/delete/<%= task.id %>" method="POST" style="display:inline">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  <% }); %>
+</ul>
+
+
